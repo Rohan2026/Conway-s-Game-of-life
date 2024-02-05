@@ -24,12 +24,37 @@ public class Life
                 }
             }
         } 
-    }    
+    }
+    
+    public static void displayBoard(Board board)
+    {
+        for (int r = 0; r < ROWS; r++)
+        {
+            for(int c= 0; c < COLS; c++)
+            {
+                if (board.get(r,c) == 0)
+                {
+                    System.out.print(".");
+                }
+                else if (board.get(r,c) == 1)
+                {
+                    System.out.print("0");
+                }
+            }
+            System.out.println();
+        }
+    }
+    
+    public static void calculateNextGneration(Board b, Board nextB)
+    {
+        
+    }
     
     public static void main(String[] args)
     {
-        Board board = new Board(ROWS, COLS):
-        
+        Board board = new Board(ROWS, COLS);
+        initializeBOARD(board);
+        displayBoard(board);
     }
     
     
