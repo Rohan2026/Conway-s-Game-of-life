@@ -45,7 +45,38 @@ public class Life
         }
     }
     
-    public static void calculateNextGneration(Board b, Board nextB)
+    public static void calculateNextGeneration(Board b, Board nextB)
+    {
+        for (int r = 0; r  < ROWS; r++)
+        {
+            for (int c = 0; c< COLS; c++)
+            {
+                int neighborCount = countNeighbors(r, c, b);
+                if (b.get(r,c) == 1 && neighborCount < 2)
+                {
+                    nextB.set(r, c, 0);
+                }
+                else if (b.get(r,c) == 1 && neighborCount <= 3) //first statement already dealt with if it was underpopulation
+                {
+                    nextB.set(r, c, 1);
+                }
+                else if (b.get(r,c) == 1 && neighborCount > 3)
+                {
+                    nextB.set(r, c, 0);
+                }
+                else if (b.get(r, c) == 0 && neighborCount == 3)
+                {
+                    nextB.set(r, c, 1);
+                }
+                else
+                {
+                    nextB.set(r, c, 0);
+                }
+            }
+        }
+    }
+    
+    public static int countNeighbors(int row, int col, Board b)
     {
         
     }
