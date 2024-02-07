@@ -78,7 +78,13 @@ public class Life
     
     public static int countNeighbors(int row, int col, Board b)
     {
-        
+        int count = 0;
+        for (r = row - 1; r <= row + 1; r++)
+        {
+            for (c = col -1; c <= col +1; c++)
+            {
+            }
+        }
     }
     
     public static void main(String[] args)
