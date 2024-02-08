@@ -79,12 +79,25 @@ public class Life
     public static int countNeighbors(int row, int col, Board b)
     {
         int count = 0;
-        for (r = row - 1; r <= row + 1; r++)
+        for (int r = row - 1; r <= row + 1; r++)
         {
-            for (c = col -1; c <= col +1; c++)
+            for (int c = col -1; c <= col +1; c++)
             {
+                if (r >= 0 && r <= ROWS && 
+                    c >= 0 && c <= COLS && 
+                    !(r == row && c == col) && 
+                    b.get(r,c) == 1)
+                {
+                    count ++;
+                }
             }
         }
+        return count;
+    }
+    
+    public static void transferNextToCurrent(Board board, Board nextBoard)
+    {
+        
     }
     
     public static void main(String[] args)
@@ -92,6 +105,7 @@ public class Life
         Board board = new Board(ROWS, COLS);
         initializeBOARD(board);
         displayBoard(board);
+        System.out.println(countNeighbors(0, 0, board));
     }
     
     
