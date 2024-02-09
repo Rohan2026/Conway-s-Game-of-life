@@ -95,17 +95,26 @@ public class Life
         return count;
     }
     
-    public static void transferNextToCurrent(Board board, Board nextBoard)
+    public static void transferNextToCurrent(Board board, Board nextB)
     {
-        
+        for (int r = 0; r < ROWS; r++)
+        {
+            for (int c = 0; c < COLS; c++)
+            {
+               board.set(r,c, nextB.get(r,c)); 
+            }
+        }
     }
     
     public static void main(String[] args)
     {
         Board board = new Board(ROWS, COLS);
         initializeBOARD(board);
-        displayBoard(board);
-        System.out.println(countNeighbors(0, 0, board));
+        for (int i = 0; i < 100; i++)
+        {
+            displayBoard(board);
+            countNeighbors(ROWS, COLS, b);
+        }
     }
     
     
