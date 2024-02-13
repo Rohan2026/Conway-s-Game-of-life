@@ -106,18 +106,23 @@ public class Life
         }
     }
     
+    private static void clearConsole()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+    
     public static void main(String[] args)
     {
         Board board = new Board(ROWS, COLS);
+        Board nextBoard = new Board(ROWS, COLS);
         initializeBOARD(board);
         for (int i = 0; i < 100; i++)
         {
+            clearConsole();
             displayBoard(board);
-            countNeighbors(ROWS, COLS, b);
+            calculateNextGeneration(board, nextBoard);
+            transferNextToCurrent(board, nextBoard);
         }
     }
-    
-    
-    
-    
 }
