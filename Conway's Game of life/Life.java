@@ -7,8 +7,8 @@
  */
 public class Life
 {
-    public static final int ROWS = 20;
-    public static final int COLS = 80;
+    public static final int ROWS = 10;
+    public static final int COLS = 10;
     public static final int TIME_DELAY=500;
     
     public static void initializeBOARD(Board b)
@@ -112,6 +112,18 @@ public class Life
         System.out.flush();
     }
     
+    private static void slow(int TIME_DELAY)
+    {
+        try
+        {
+            Thread.sleep(TIME_DELAY);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+    
     public static void main(String[] args)
     {
         Board board = new Board(ROWS, COLS);
@@ -121,7 +133,9 @@ public class Life
         {
             clearConsole();
             displayBoard(board);
+            slow(TIME_DELAY);
             calculateNextGeneration(board, nextBoard);
+            clearConsole();
             transferNextToCurrent(board, nextBoard);
         }
     }
