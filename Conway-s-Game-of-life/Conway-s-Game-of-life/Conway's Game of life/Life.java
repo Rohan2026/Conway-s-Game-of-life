@@ -7,8 +7,8 @@
  */
 public class Life
 {
-    public static final int ROWS = 10;
-    public static final int COLS = 10;
+    public static final int ROWS = 50;
+    public static final int COLS = 80;
     public static final int TIME_DELAY=500;
     
     public static void initializeBOARD(Board b)
@@ -56,7 +56,7 @@ public class Life
                 {
                     nextB.set(r, c, 0);
                 }
-                else if (b.get(r,c) == 1 && neighborCount <= 3) //first statement already dealt with if it was underpopulation
+                else if (b.get(r,c) == 1 && neighborCount < 4) //first statement already dealt with if it was underpopulation
                 {
                     nextB.set(r, c, 1);
                 }
@@ -83,8 +83,8 @@ public class Life
         {
             for (int c = col -1; c <= col +1; c++)
             {
-                if (r >= 0 && r <= ROWS && 
-                    c >= 0 && c <= COLS && 
+                if (r >= 0 && r < ROWS && 
+                    c >= 0 && c < COLS && 
                     !(r == row && c == col) && 
                     b.get(r,c) == 1)
                 {
@@ -108,7 +108,7 @@ public class Life
     
     private static void clearConsole()
     {
-        System.out.print("\033[H\033[2J");
+        System.out.print("");
         System.out.flush();
     }
     
