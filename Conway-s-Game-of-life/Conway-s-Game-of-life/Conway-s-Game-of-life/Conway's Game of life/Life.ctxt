@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Life
+comment0.text=\n\ Write\ a\ description\ of\ class\ Life\ here.\n\n\ @author\ (Rohan\ Huynh)\n\ @version\ (2/2/24)\n
+comment1.params=
+comment1.target=void\ sizeinput()
+comment2.params=b
+comment2.target=void\ initializeBOARD(Board)
+comment3.params=board
+comment3.target=void\ displayBoard(Board)
+comment4.params=b\ nextB
+comment4.target=void\ calculateNextGeneration(Board,\ Board)
+comment5.params=row\ col\ b
+comment5.target=int\ countNeighbors(int,\ int,\ Board)
+comment6.params=board\ nextB
+comment6.target=void\ transferNextToCurrent(Board,\ Board)
+comment7.params=
+comment7.target=void\ clearConsole()
+comment8.params=TIME_DELAY
+comment8.target=void\ slow(int)
+comment9.params=args
+comment9.target=void\ main(java.lang.String[])
+numComments=10
