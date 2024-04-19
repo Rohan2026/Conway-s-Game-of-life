@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Board
+comment0.text=\n\ Write\ a\ description\ of\ class\ Board\ here.\n\n\ @author\ (Rohan\ Huynh)\n\ @version\ (2/1/24)\n
+comment1.params=
+comment1.target=int\ getBoardsize()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Board\n
+comment2.params=Boardsize
+comment2.target=void\ setBoardsize(int)
+comment3.params=rows\ cols
+comment3.target=Board(int,\ int)
+comment4.params=row\ col
+comment4.target=int\ get(int,\ int)
+comment5.params=row\ col\ value
+comment5.target=void\ set(int,\ int,\ int)
+comment6.params=
+comment6.target=int\ getRows()
+comment7.params=
+comment7.target=int\ getCols()
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9
