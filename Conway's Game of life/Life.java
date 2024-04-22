@@ -10,7 +10,7 @@ public class Life
     Scanner input = new Scanner (System.in);
     public static int ROWS;
     public static int COLS;
-    public static final int TIME_DELAY=5250;
+    public static final int TIME_DELAY=250;
     public static void Rowinput() {
         boolean Row = true;
         while (Row == true) {
@@ -166,6 +166,7 @@ public class Life
         for (int i = 0; i < 300; i++)
         {
             clearConsole();
+            System.out.println(" ");
             displayBoard(board);
             slow(TIME_DELAY);
             calculateNextGeneration(board, nextBoard);
