@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * Write a description of class Life here.
  *
@@ -7,9 +7,40 @@
  */
 public class Life
 {
-    public static final int ROWS = 10;
-    public static final int COLS = 10;
-    public static final int TIME_DELAY=500;
+    Scanner input = new Scanner (System.in);
+    public static int ROWS;
+    public static int COLS;
+    public static final int TIME_DELAY=5250;
+    public static void Rowinput() {
+        boolean Row = true;
+        while (Row == true) {
+            System.out.println ("How many Rows?");
+        
+            Scanner input = new Scanner (System.in);
+            try {
+            ROWS = input.nextInt();
+            Row = false;
+            } catch (Exception e) {
+            System.out.println("Invalid");
+            }
+            input.close();
+        } 
+    }
+    public static void Columninput() {
+        boolean Cols = true;
+        while (Cols == true) {
+            System.out.println ("How many Columns?");
+        
+            Scanner input = new Scanner (System.in);
+            try {
+                COLS = input.nextInt();
+                Cols = false;
+            } catch (Exception e) {
+                System.out.println("Invalid");
+            }
+            input.close();
+        }
+    }
     
     public static void initializeBOARD(Board b)
     {
@@ -56,7 +87,7 @@ public class Life
                 {
                     nextB.set(r, c, 0);
                 }
-                else if (b.get(r,c) == 1 && neighborCount <= 3) //first statement already dealt with if it was underpopulation
+                else if (b.get(r,c) == 1 && neighborCount < 4) //first statement already dealt with if it was underpopulation
                 {
                     nextB.set(r, c, 1);
                 }
@@ -64,7 +95,7 @@ public class Life
                 {
                     nextB.set(r, c, 0);
                 }
-                else if (b.get(r, c) == 0 && neighborCount == 3)
+                else if (b.get(r, c) == 0 && neighborCount == 3 || neighborCount ==6)
                 {
                     nextB.set(r, c, 1);
                 }
@@ -83,8 +114,8 @@ public class Life
         {
             for (int c = col -1; c <= col +1; c++)
             {
-                if (r >= 0 && r <= ROWS && 
-                    c >= 0 && c <= COLS && 
+                if (r >= 0 && r < ROWS && 
+                    c >= 0 && c < COLS && 
                     !(r == row && c == col) && 
                     b.get(r,c) == 1)
                 {
@@ -108,7 +139,7 @@ public class Life
     
     private static void clearConsole()
     {
-        System.out.print("\033[H\033[2J");
+        System.out.print("");
         System.out.flush();
     }
     
@@ -126,10 +157,13 @@ public class Life
     
     public static void main(String[] args)
     {
+        Rowinput();
+        Columninput();
+        
         Board board = new Board(ROWS, COLS);
         Board nextBoard = new Board(ROWS, COLS);
         initializeBOARD(board);
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 300; i++)
         {
             clearConsole();
             displayBoard(board);
