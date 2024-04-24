@@ -7,14 +7,53 @@ import java.util.Scanner;
  */
 public class Life
 {
-    static int row;
-    public static final int ROWS = 50;
-    public static final int COLS = 150;
-    public static final int TIME_DELAY=5250;
-    public static void sizeinput() {
-        System.out.println ("How many Rows?");
+    Scanner input = new Scanner (System.in);
+    public static int generation;
+    public static int ROWS;
+    public static int COLS;
+    public static final int TIME_DELAY=250;
+    public static void generationCount() {
+        generation++;
+        System.out.println("generation:" + generation);
+    }
+    public static void Rowinput() {
+        boolean Row = true;
+        while (Row == true) {
+            System.out.println ("How many Rows? (Less than 40)");
         
-        Scanner input = new Scanner (System.in);
+            Scanner input = new Scanner (System.in);
+            try {
+            ROWS = input.nextInt();
+            if (ROWS > 40) 
+            {
+                System.out.println("Too many Rows");
+            } 
+            else 
+            {
+            //ROWS = input.nextInt();
+            Row = false;
+            }
+                } catch (Exception e) 
+            {
+            System.out.println("Invalid");
+            }
+            input.close();
+        } 
+    }
+    public static void Columninput() {
+        boolean Cols = true;
+        while (Cols == true) {
+            System.out.println ("How many Columns?");
+        
+            Scanner input = new Scanner (System.in);
+            try {
+                COLS = input.nextInt();
+                Cols = false;
+            } catch (Exception e) {
+                System.out.println("Invalid");
+            }
+            input.close();
+        }
     }
     
     public static void initializeBOARD(Board b)
@@ -132,19 +171,22 @@ public class Life
     
     public static void main(String[] args)
     {
-        sizeinput();
+        Rowinput();
+        Columninput();
         
         Board board = new Board(ROWS, COLS);
         Board nextBoard = new Board(ROWS, COLS);
         initializeBOARD(board);
-        //for (int i = 0; i < 300; i++)
-        //{
-        //    clearConsole();
-        //    displayBoard(board);
-         //   slow(TIME_DELAY);
-           // calculateNextGeneration(board, nextBoard);
-            //clearConsole();
-           // transferNextToCurrent(board, nextBoard);
+        for (int i = 0; i < 300; i++)
+        {
+            clearConsole();
+            System.out.println(" ");
+            displayBoard(board);
+            generationCount();
+            slow(TIME_DELAY);
+            calculateNextGeneration(board, nextBoard);
+            clearConsole();
+            transferNextToCurrent(board, nextBoard);
         }
     }
-//}
+}
