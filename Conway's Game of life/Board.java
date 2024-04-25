@@ -2,25 +2,15 @@
 /**
  * Write a description of class Board here.
  *
- * @author (Rohan Huynh)
- * @version (2/1/24)
+ * 
  */
 public class Board
 {
-    int Boardsize = Life.Size;
     int[][] grid;
     
     /**
-     * Constructor for objects of class Board
+     *
      */
-    
-    public int getBoardsize() {
-        return this.Boardsize;
-    }
-    
-    public void setBoardsize(int Boardsize) {
-        this.Boardsize = Boardsize;
-    }
     
     public Board(int rows, int cols)
     {

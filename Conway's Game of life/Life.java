@@ -2,8 +2,7 @@ import java.util.Scanner;
 /**
  * Write a description of class Life here.
  *
- * @author (Rohan Huynh)
- * @version (2/2/24)
+ * 
  */
 public class Life
 {
@@ -30,7 +29,6 @@ public class Life
             } 
             else 
             {
-            //ROWS = input.nextInt();
             Row = false;
             }
                 } catch (Exception e) 
@@ -62,7 +60,7 @@ public class Life
         {
             for(int c = 0; c < COLS; c++)
             {
-                int randVal = (int) (Math.random() * 3); // random number 0, 1, 2
+                int randVal = (int) (Math.random() * 3);
                 if (randVal == 0)
                 {
                     b.set(r,c,1);
@@ -101,7 +99,7 @@ public class Life
                 {
                     nextB.set(r, c, 0);
                 }
-                else if (b.get(r,c) == 1 && neighborCount < 4) //first statement already dealt with if it was underpopulation
+                else if (b.get(r,c) == 1 && neighborCount < 4)
                 {
                     nextB.set(r, c, 1);
                 }

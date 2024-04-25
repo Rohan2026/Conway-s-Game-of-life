@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Life
-comment0.text=\n\ Write\ a\ description\ of\ class\ Life\ here.\n\n\ @author\ (Rohan\ Huynh)\n\ @version\ (2/2/24)\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Life\ here.\n\n\ \n
 comment1.params=
 comment1.target=void\ generationCount()
 comment10.params=TIME_DELAY
