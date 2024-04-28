@@ -7,54 +7,76 @@ import java.util.Scanner;
 public class Life
 {
     Scanner input = new Scanner (System.in);
+    public static String yolo;
+    public static int r;
+    public static int c;
     public static int generation;
     public static int ROWS;
     public static int COLS;
-    public static final int TIME_DELAY=250;
+    public static final int TIME_DELAY=1000;
     public static void generationCount() {
         generation++;
         System.out.println("generation:" + generation);
     }
+
     public static void Rowinput() {
         boolean Row = true;
         while (Row == true) {
-            System.out.println ("How many Rows? (Less than 40)");
-        
+            System.out.println ("How many Rows? (Less than 30)");
+
             Scanner input = new Scanner (System.in);
             try {
-            ROWS = input.nextInt();
-            if (ROWS > 40) 
+                ROWS = input.nextInt();
+                if (ROWS > 30) 
+                {
+                    System.out.println("Too many Rows");
+                } 
+                else 
+                {
+                    Row = false;
+                }
+            } catch (Exception e) 
             {
-                System.out.println("Too many Rows");
-            } 
-            else 
-            {
-            Row = false;
-            }
-                } catch (Exception e) 
-            {
-            System.out.println("Invalid");
+                System.out.println("Invalid");
             }
             input.close();
         } 
     }
+
     public static void Columninput() {
         boolean Cols = true;
         while (Cols == true) {
-            System.out.println ("How many Columns?");
-        
+            System.out.println ("How many Columns?(Less than 110)");
+
             Scanner input = new Scanner (System.in);
             try {
                 COLS = input.nextInt();
-                Cols = false;
+                if (COLS > 110) 
+                {
+                    System.out.println("Too many Columns");
+                } 
+                else 
+                {
+                    Cols = false;
+                }
             } catch (Exception e) {
                 System.out.println("Invalid");
             }
             input.close();
         }
     }
-    
-    public static void initializeBOARD(Board b)
+    public static void ClearBOARD(Board b)
+    {
+        for (int r = 0; r < ROWS; r++)
+        {
+            for (int c = 0; c <COLS; c++)
+            {
+                b.set(r,c,0);
+            }
+        }
+    }
+
+    public static void RandomBOARD(Board b)
     {
         for (int r = 0; r < ROWS; r++)
         {
@@ -68,7 +90,58 @@ public class Life
             }
         } 
     }
-    
+
+    public static void initializeBOARD(Board b) {
+        System.out.println("Where do you want your pieces - type 9009 for col and row if you are done");
+        Scanner input = new Scanner (System.in);
+        boolean random = true;
+        while (random == true) {
+            System.out.println("Randomize? - input yes/no");
+            yolo = input.next();
+            if (yolo.equals("yes")) {
+                ClearBOARD(b);
+                RandomBOARD(b);
+                displayBoard(b);
+            } else if (yolo.equals("no")) {
+                random = false;
+            } else {
+                System.out.println("bruh (type 9009 after this input)");
+            }
+        }
+        boolean done = true;
+        while (done == true) {
+            boolean doneRow = true;
+            while (doneRow == true) {
+                try {
+                    System.out.println("Row?(including 0)");
+                    r = input.nextInt();
+                    doneRow = false;
+                } catch (Exception e) {
+                    System.out.println("Invalid");
+                    input.next(); //Consume the invalid input
+                }
+            }
+            boolean doneCol = true;
+            while (doneCol == true) {
+                try {
+                    System.out.println("Column?(including 0)");
+                    c = input.nextInt();
+                    doneCol = false;
+                } catch (Exception e) {
+                    System.out.println("Invalid");
+                    input.next();
+                }
+            }
+            if (r == 9009 || c == 9009) {
+                done = false;
+            }
+            if (done == true) {
+                b.set(r,c,1);
+                displayBoard(b);
+            }
+        }
+    }
+
     public static void displayBoard(Board board)
     {
         for (int r = 0; r < ROWS; r++)
@@ -87,7 +160,7 @@ public class Life
             System.out.println();
         }
     }
-    
+
     public static void calculateNextGeneration(Board b, Board nextB)
     {
         for (int r = 0; r  < ROWS; r++)
@@ -118,7 +191,7 @@ public class Life
             }
         }
     }
-    
+
     public static int countNeighbors(int row, int col, Board b)
     {
         int count = 0;
@@ -127,9 +200,9 @@ public class Life
             for (int c = col -1; c <= col +1; c++)
             {
                 if (r >= 0 && r < ROWS && 
-                    c >= 0 && c < COLS && 
-                    !(r == row && c == col) && 
-                    b.get(r,c) == 1)
+                c >= 0 && c < COLS && 
+                !(r == row && c == col) && 
+                b.get(r,c) == 1)
                 {
                     count ++;
                 }
@@ -137,24 +210,44 @@ public class Life
         }
         return count;
     }
-    
+    public static void aliveANDdead(Board b)
+    {
+        int alive = 0;
+        int dead = 0;
+        for (int r = 0; r < ROWS; r++)
+        {
+            for (int c = 0; c < COLS; c++)
+            {
+                if (b.get(r,c) == 1) {
+                    alive++;
+                } 
+                else if (b.get(r,c) == 0)
+                {
+                    dead++;
+                }
+            }
+        }
+        System.out.print("Alive:" + alive);
+        System.out.println(" Dead:" + dead);
+    }
+
     public static void transferNextToCurrent(Board board, Board nextB)
     {
         for (int r = 0; r < ROWS; r++)
         {
             for (int c = 0; c < COLS; c++)
             {
-               board.set(r,c, nextB.get(r,c)); 
+                board.set(r,c, nextB.get(r,c)); 
             }
         }
     }
-    
+
     private static void clearConsole()
     {
         System.out.print("");
         System.out.flush();
     }
-    
+
     private static void slow(int TIME_DELAY)
     {
         try
@@ -166,12 +259,12 @@ public class Life
             Thread.currentThread().interrupt();
         }
     }
-    
+
     public static void main(String[] args)
     {
         Rowinput();
         Columninput();
-        
+
         Board board = new Board(ROWS, COLS);
         Board nextBoard = new Board(ROWS, COLS);
         initializeBOARD(board);
@@ -181,6 +274,7 @@ public class Life
             System.out.println(" ");
             displayBoard(board);
             generationCount();
+            aliveANDdead(board);
             slow(TIME_DELAY);
             calculateNextGeneration(board, nextBoard);
             clearConsole();
