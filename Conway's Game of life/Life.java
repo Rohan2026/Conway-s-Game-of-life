@@ -14,12 +14,12 @@ public class Life
     public static int ROWS;
     public static int COLS;
     public static final int TIME_DELAY=1000;
-    public static void generationCount() {
+    private static void generationCount() {
         generation++;
         System.out.println("generation:" + generation);
     }
 
-    public static void Rowinput() {
+    private static void Rowinput() {
         boolean Row = true;
         while (Row == true) {
             System.out.println ("How many Rows? (Less than 30)");
@@ -43,7 +43,7 @@ public class Life
         } 
     }
 
-    public static void Columninput() {
+    private static void Columninput() {
         boolean Cols = true;
         while (Cols == true) {
             System.out.println ("How many Columns?(Less than 110)");
@@ -65,7 +65,7 @@ public class Life
             input.close();
         }
     }
-    public static void ClearBOARD(Board b)
+    private static void ClearBOARD(Board b)
     {
         for (int r = 0; r < ROWS; r++)
         {
@@ -76,7 +76,7 @@ public class Life
         }
     }
 
-    public static void RandomBOARD(Board b)
+    private static void RandomBOARD(Board b)
     {
         for (int r = 0; r < ROWS; r++)
         {
@@ -91,7 +91,7 @@ public class Life
         } 
     }
 
-    public static void initializeBOARD(Board b) {
+    private static void initializeBOARD(Board b) {
         System.out.println("Where do you want your pieces - type 9009 for col and row if you are done");
         Scanner input = new Scanner (System.in);
         boolean random = true;
@@ -142,7 +142,7 @@ public class Life
         }
     }
 
-    public static void displayBoard(Board board)
+    private static void displayBoard(Board board)
     {
         for (int r = 0; r < ROWS; r++)
         {
@@ -161,7 +161,7 @@ public class Life
         }
     }
 
-    public static void calculateNextGeneration(Board b, Board nextB)
+    private static void calculateNextGeneration(Board b, Board nextB)
     {
         for (int r = 0; r  < ROWS; r++)
         {
@@ -192,7 +192,7 @@ public class Life
         }
     }
 
-    public static int countNeighbors(int row, int col, Board b)
+    private static int countNeighbors(int row, int col, Board b)
     {
         int count = 0;
         for (int r = row - 1; r <= row + 1; r++)
@@ -210,7 +210,7 @@ public class Life
         }
         return count;
     }
-    public static void aliveANDdead(Board b)
+    private static void aliveANDdead(Board b)
     {
         int alive = 0;
         int dead = 0;
@@ -231,7 +231,7 @@ public class Life
         System.out.println(" Dead:" + dead);
     }
 
-    public static void transferNextToCurrent(Board board, Board nextB)
+    private static void transferNextToCurrent(Board board, Board nextB)
     {
         for (int r = 0; r < ROWS; r++)
         {
